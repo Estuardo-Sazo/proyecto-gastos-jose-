@@ -51,8 +51,8 @@ function editarGrupo(id) {
   $("#editar").modal("show");
   //recorremos nuestros array de grupos
   db["grupos"].forEach(function (grupo, index, object) {
-    if (grupo.id === id) {
       //y buscamos por el atributo ID
+    if (grupo.id === id) {
       //Asiganamos los valores por defecto
       $("#id").val(id);
       $("#nombre").val(object[index].nombre);
@@ -73,8 +73,8 @@ $("#editar").submit(function (e) {
 
   //recorremos nuestros array de grupos
   db["grupos"].forEach(function (grupo, index, object) {
-    if (grupo.id === id) {
       //y buscamos por el atributo ID
+    if (grupo.id === id) {
       //Asiganamos los nuevos valores para el objeto
       object[index].nombre = datos.nombre;
       object[index].descripcion = datos.descripcion;
