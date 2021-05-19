@@ -1,0 +1,16 @@
+{
+    "grupos": [
+        {
+            "id": "1",
+            "nombre": "Educacion",
+            "descripcion": "Gastos de educacion"
+
+        },
+        {
+            "id": "2",
+            "nombre": "Hogar",
+            "descripcion": "Gastos de hogar"
+
+        }
+    ]
+}
