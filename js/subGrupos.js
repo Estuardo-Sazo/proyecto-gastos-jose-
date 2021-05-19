@@ -28,7 +28,7 @@ function listarSubGrupos() {
         <td>${sub.nombre}</td>
 
         <td>${sub.descripcion}</td>
-        <td><a href="#" class="btn btn-light btn-ms" onClick="editarGrupo(${sub.id})">Editar</a> | <a href="#" class="btn btn-light btn-ms" onClick="eliminarGrupo(${sub.id})">Eliminar</a> </td>
+        <td><a href="#" class="btn btn-light btn-ms" onClick="editar(${sub.id})">Editar</a> | <a href="#" class="btn btn-light btn-ms" onClick="eliminar(${sub.id})">Eliminar</a> </td>
     </tr> `;
   });
   //Insertamos todas las filas creadas al body de la tabla mediante el ID
@@ -49,9 +49,9 @@ function obtenerNombreGrupo(id) {
   
   }
 
-function eliminarGrupo(id) {
+function eliminar(id) {
   //recorremos nuestros array de grupos
-  db["grupos"].forEach(function (grupo, index, object) {
+  db["sub-grupos"].forEach(function (grupo, index, object) {
     if (grupo.id === id) {
       //y buscamos por el atributo ID
       object.splice(index, 1); //Si el id conside se elimina el objeto de la lista de grupo
@@ -60,7 +60,7 @@ function eliminarGrupo(id) {
   //Actualizamos nuestra db en localStorage
   localStorage.setItem("db", JSON.stringify(db));
   // Llamado de funciones globales
-  listarGrupos();
+  listarSubGrupos();
 }
 
 function listarGrupos() {
@@ -74,7 +74,7 @@ function listarGrupos() {
     $("#grupo").html(html);
   }
 
-function editarGrupo(id) {
+function editar(id) {
   //Abrimos el modad de editar
   $("#editar").modal("show");
   //recorremos nuestros array de grupos
