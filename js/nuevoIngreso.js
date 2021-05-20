@@ -13,19 +13,6 @@ if (db == null) {
     localStorage.setItem("db", JSON.stringify(db));
 }
 
-//Llamado de funciones globales
-listarSubGrupos();
-
-function listarSubGrupos() {
-    let html = "";
-    ///Recorremos nuestra lista 
-    db["sub-grupos"].forEach((sub) => {
-        html += `
-       <option value="${sub.id}">${sub.nombre}</option>`;
-    });
-    //Insertamos todas las filas creadas al body de la tabla mediante el ID
-    $("#subgrupo").html(html);
-}
 
 
 $('#nuevo').submit(function(e) {
@@ -34,19 +21,18 @@ $('#nuevo').submit(function(e) {
     const datos = {
         id: Math.floor(Math.random() * 1000000), // Creamos un id aleatorio
         nombre: $('#nombre').val(),
-        subgrupo: $('#subgrupo').val(),
         fecha: $('#fecha').val(),
         cantidad: $('#cantidad').val()
 
     };
 
     //Agregamos en nuestra db en el array 
-    db["gastos"].push(datos);
+    db["ingresos"].push(datos);
 
     //Actualizamos nuestra db en localStorage
     localStorage.setItem('db', JSON.stringify(db));
 
-    //redirigiomos a la pagina de lista de gastos
-    window.location.href = "gastos.html";
+    //redirigiomos a la pagina de lista
+    window.location.href = "ingresos.html";
 
 });

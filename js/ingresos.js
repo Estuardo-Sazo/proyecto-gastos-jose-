@@ -14,20 +14,18 @@ if (db == null) {
 }
 
 // Llamado de funciones globales
-listaGastos();
-listarSubGrupos();
+listaIngresos();
 
-function listaGastos() {
+
+function listaIngresos() {
     let html = "";
     ///Recorremos nuestra lista 
-    db["gastos"].forEach((g) => {
+    db["ingresos"].forEach((g) => {
         html += `
     <tr>
         <td>${g.id}</td>
-        <td>${obtenerNombreSubGrupo(g.subgrupo) }</td>
         <td>${g.nombre}</td>       
-        <td>${g.fecha}</td>       
-        
+        <td>${g.fecha}</td>   
         <td>Q${g.cantidad}</td>
         <td><a href="#" class="btn btn-light btn-ms" onClick="editar(${g.id})">Editar</a> | <a href="#" class="btn btn-light btn-ms" onClick="eliminar(${g.id})">Eliminar</a> </td>
     </tr> `;
@@ -37,56 +35,29 @@ function listaGastos() {
 }
 
 function eliminar(id) {
-    //recorremos nuestros array
-    db["gastos"].forEach(function(g, index, object) {
+    //recorremos nuestros array 
+    db["ingresos"].forEach(function(g, index, object) {
         if (g.id === id) {
             //y buscamos por el atributo ID
-            object.splice(index, 1); //Si el id conside se elimina el objeto de la lista de grupo
+            object.splice(index, 1); //Si el id conside se elimina el objeto de la lista 
         }
     });
     //Actualizamos nuestra db en localStorage
     localStorage.setItem("db", JSON.stringify(db));
     // Llamado de funciones globales
-    listaGastos();
+    listaIngresos();
 }
 
-
-function obtenerNombreSubGrupo(sub) {
-    let id = parseInt(sub);
-    //recorremos nuestros array 
-    let nombre = '';
-    db["sub-grupos"].forEach(function(grupo, index, object) {
-        if (grupo.id === id) {
-            //y buscamos por el atributo ID
-            nombre = object[index].nombre;
-        }
-    });
-    return nombre;
-
-}
-
-
-function listarSubGrupos() {
-    let html = "";
-    ///Recorremos nuestra lista 
-    db["sub-grupos"].forEach((sub) => {
-        html += `
-       <option value="${sub.id}">${sub.nombre}</option>`;
-    });
-    //Insertamos todas las filas creadas al body de la tabla mediante el ID
-    $("#subgrupo").html(html);
-}
 
 function editar(id) {
     //Abrimos el modad de editar
     $("#editar").modal("show");
     //recorremos nuestros array 
-    db["gastos"].forEach(function(grupo, index, object) {
+    db["ingresos"].forEach(function(grupo, index, object) {
         //y buscamos por el atributo ID
         if (grupo.id === id) {
             //Asiganamos los valores por defecto
             $("#id").val(id);
-            $("#subgrupo").val(object[index].subgrupo);
             $("#nombre").val(object[index].nombre);
             $("#fecha").val(object[index].fecha);
             $("#cantidad").val(object[index].cantidad);
@@ -98,17 +69,15 @@ function editar(id) {
 $("#editar").submit(function(e) {
     e.preventDefault(); // Evita que se recarge la pagina
     var id = parseInt($("#id").val()); //guardamos el id
-    console.log(id);
     //Creamos un objeto con los valores de los campos del formulario
     const datos = {
         nombre: $("#nombre").val(),
-        subgrupo: $("#subgrupo").val(),
         fecha: $("#fecha").val(),
         cantidad: $("#cantidad").val(),
     };
 
     //recorremos nuestros array 
-    db["gastos"].forEach(function(sub, index, object) {
+    db["ingresos"].forEach(function(sub, index, object) {
         //y buscamos por el atributo ID
         if (sub.id === id) {
             //Asiganamos los nuevos valores para el objeto
@@ -124,7 +93,7 @@ $("#editar").submit(function(e) {
     localStorage.setItem("db", JSON.stringify(db));
 
     // Llamado de funciones globales
-    listaGastos();
+    listaIngresos();
     //Ocultamos el Modal
     $("#editar").modal("hide");
 

@@ -19,7 +19,7 @@ listarGrupos();
 
 function listarSubGrupos() {
   let html = "";
-  ///Recorremos nuestra lista de grupos
+  ///Recorremos nuestra lista 
   db["sub-grupos"].forEach((sub) => {
     html += `
     <tr>
@@ -37,7 +37,7 @@ function listarSubGrupos() {
 
 
 function obtenerNombreGrupo(id) {
-    //recorremos nuestros array de grupos
+    //recorremos nuestros array 
     let nombre='';
     db["grupos"].forEach(function (grupo, index, object) {
       if (grupo.id === id) {
@@ -50,11 +50,11 @@ function obtenerNombreGrupo(id) {
   }
 
 function eliminar(id) {
-  //recorremos nuestros array de grupos
+  //recorremos nuestros array 
   db["sub-grupos"].forEach(function (grupo, index, object) {
     if (grupo.id === id) {
       //y buscamos por el atributo ID
-      object.splice(index, 1); //Si el id conside se elimina el objeto de la lista de grupo
+      object.splice(index, 1); //Si el id conside se elimina el objeto de la lista 
     }
   });
   //Actualizamos nuestra db en localStorage
@@ -65,19 +65,19 @@ function eliminar(id) {
 
 function listarGrupos() {
     let html = "";
-    ///Recorremos nuestra lista de grupos
+    ///Recorremos nuestra lista 
     db["grupos"].forEach((grupo) => {
       html += `
      <option value="${grupo.id}">${grupo.nombre}</option>`;
     });
-    //Insertamos todas nuestra opciones de grupo en el list box de grupos
+    //Insertamos todas nuestra opciones de grupo en el list box 
     $("#grupo").html(html);
   }
 
 function editar(id) {
   //Abrimos el modad de editar
   $("#editar").modal("show");
-  //recorremos nuestros array de grupos
+  //recorremos nuestros array 
   db["sub-grupos"].forEach(function (grupo, index, object) {
       //y buscamos por el atributo ID
     if (grupo.id === id) {
@@ -105,7 +105,7 @@ $("#editar").submit(function (e) {
     descripcion: $("#descripcion").val(),
   };
 
-  //recorremos nuestros array de grupos
+  //recorremos nuestros array 
   db["sub-grupos"].forEach(function (sub, index, object) {
       //y buscamos por el atributo ID
     if (sub.id === id) {

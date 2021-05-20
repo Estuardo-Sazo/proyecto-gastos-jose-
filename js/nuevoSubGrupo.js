@@ -38,13 +38,13 @@ function listarGrupos() {
         descripcion: $('#descripcion').val()
     };
     
-    //Agregamos en nuestra db en el array de grupos
+    //Agregamos en nuestra db en el array 
     db["sub-grupos"].push(datos);
 
     //Actualizamos nuestra db en localStorage
     localStorage.setItem('db', JSON.stringify(db));
 
-    //redirigiomos a la pagina de lista de grupos
+    //redirigiomos a la pagina de lista 
     window.location.href = "subGrupos.html";
 
 });
